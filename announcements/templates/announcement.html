@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Announcement Board</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#f8fafc;
+            font-family:Arial, sans-serif;
+            color:#333;
+        }
+
+        .container{
+            max-width:550px;
+            margin:25px auto;
+            padding:15px;
+            border:1px solid #adadad;
+            border-radius:12px;
+            background:#f8fafc;
+        }
+
+        .header{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        .header h1{
+            color:#2563eb;
+            margin-bottom:5px;
+            font-size:2rem;
+        }
+
+        .header p{
+            color:#64748b;
+            font-size:0.9rem;
+        }
+
+        .form-card{
+            background:white;
+            padding:18px;
+            border-radius:15px;
+            box-shadow:0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom:30px;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:10px;
+            margin-bottom:12px;
+            border:1px solid #dbe2ea;
+            border-radius:8px;
+            font-size:14px;
+            outline:none;
+        }
+
+        input:focus,
+        textarea:focus{
+            border:1px solid #2563eb;
+        }
+
+        textarea{
+            min-height:120px;
+            resize:vertical;
+        }
+
+        button{
+            width:100%;
+            background:#2563eb;
+            color:white;
+            border:none;
+            padding:10px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:14px;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .section-title{
+            margin-bottom:15px;
+            color:#1e293b;
+        }
+
+        .card{
+            background:white;
+            border-radius:12px;
+            padding:14px;
+            margin-bottom:12px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .card h3{
+            color:#2563eb;
+            margin-bottom:5px;
+            font-size:1rem;
+            text-transform: capitalize;
+        }
+
+        .card p{
+            color:#475569;
+            line-height:1.4;
+            font-size:0.9rem;
+        }
+
+        .meta{
+            font-size:0.75rem;
+            color:#94a3b8;
+            margin-top:5px;
+        }
+
+        .empty-card{
+            background:white;
+            text-align:center;
+            padding:20px;
+            border-radius:15px;
+            color:#64748b;
+            box-shadow:0 3px 10px rgba(0,0,0,0.08);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>📢 Announcement Board</h1>
+        <p>Share important updates and notices</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Enter title..."
+                required
+            >
+
+            <textarea
+                name="content"
+                placeholder="Write your announcement..."
+                required
+            ></textarea>
+
+            <input
+                type="date"
+                name="expiry_date"
+            >
+
+            <button type="submit">
+                Post Announcement
+            </button>
+        </form>
+
+    </div>
+
+<!--    &lt;!&ndash; TITLE &ndash;&gt;-->
+<!--    <h2 class="section-title">-->
+<!--        Recent Announcements-->
+<!--    </h2>-->
+
+<!--    &lt;!&ndash; LIST &ndash;&gt;-->
+<!--    {% if announcements %}-->
+
+<!--        {% for announcement in announcements %}-->
+<!--            <div class="card">-->
+
+<!--                <h3>-->
+<!--                    📢 {{ announcement.title }}-->
+<!--                </h3>-->
+
+<!--                <p>-->
+<!--                    {{ announcement.content }}-->
+<!--                </p>-->
+
+<!--                <div class="meta">-->
+<!--                    Created: {{ announcement.created_at }}-->
+<!--                    {% if announcement.expiry_date %}-->
+<!--                        | Expires: {{ announcement.expiry_date }}-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        {% endfor %}-->
+
+<!--    {% else %}-->
+
+<!--        <div class="empty-card">-->
+<!--            No announcements available.-->
+<!--        </div>-->
+
+<!--    {% endif %}-->
+
+</div>
+<script>
+    {% if success %}
+        alert("✅ Announcement posted successfully!");
+    {% endif %}
+</script>
+</body>
+</html>
