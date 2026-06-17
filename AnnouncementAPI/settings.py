@@ -76,11 +76,25 @@ WSGI_APPLICATION = 'AnnouncementAPI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'announcementapi_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+import dj_database_url
+import os
+
+#external used
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': dj_database_url.config(
+       default='postgresql://announcementapi_user:7dGekzSQmGsKwBiL0ZlhGwxd8W1xrK5W@dpg-d8pcjecm0tmc73ap9s7g-a.oregon-postgres.render.com/announcementapi_db',
+       conn_max_age=600
+   )
 }
 
 
